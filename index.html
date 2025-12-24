@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica San Gregorio | Tu Salud es Nuestra Prioridad</title>
+    
+    <!-- Tipografía: Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Iconos: FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* Colores Institucionales */
+            --guinda: #800020;
+            --guinda-hover: #a00028;
+            --fucsia-soft: #fef1f4;
+            --gris-claro: #f8f9fa;
+            --gris-texto: #4a4a4a;
+            --negro-suave: #1a1a1a;
+            --blanco: #ffffff;
+            
+            /* Efectos */
+            --shadow-soft: 0 10px 40px rgba(0,0,0,0.05);
+            --shadow-hard: 0 20px 50px rgba(128, 0, 32, 0.15);
+            --transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--blanco);
+            color: var(--gris-texto);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Animaciones Base --- */
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        [data-reveal].active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Header Sticky --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        header.sticky {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 12px 5%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            background: var(--guinda);
+            color: white;
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            box-shadow: 0 5px 15px rgba(128, 0, 32, 0.2);
+        }
+
+        .logo-text h1 {
+            font-size: 1.2rem;
+            color: var(--guinda);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        .logo-text span {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gris-texto);
+            font-weight: 600;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--negro-suave);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--guinda);
+        }
+
+        .btn-nav {
+            background: var(--guinda);
+            color: white !important;
+            padding: 12px 25px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(128, 0, 32, 0.2);
+            font-weight: 800 !important;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 5% 0;
+            background: radial-gradient(circle at 75% 30%, var(--fucsia-soft) 0%, #fff 60%);
+            position: relative;
+        }
+
+        .hero-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-content {
+            flex: 1.2;
+            z-index: 2;
+        }
+
+        .hero-image {
+            flex: 1;
+            align-self: flex-end;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 550px;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));
+            animation: floatHero 5s ease-in-out infinite;
+        }
+
+        @keyframes floatHero {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .hero h2 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--negro-suave);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .hero h2 span {
+            color: var(--guinda);
+            display: block;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            margin-bottom: 35px;
+            max-width: 550px;
+            color: var(--gris-texto);
+        }
+
+        .cta-hero {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 40px;
+            background: var(--guinda);
+            color: white;
+            text-decoration: none;
+            font-weight: 800;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(128, 0, 32, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            30% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .cta-hero:hover {
+            transform: translateY(-5px);
+            background: var(--guinda-hover);
+            box-shadow: 0 15px 30px rgba(128, 0, 32, 0.4);
+        }
+
+        /* --- Stats Bar --- */
+        .stats {
+            background: var(--guinda);
+            padding: 60px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.9;
+            font-weight: 600;
+        }
+
+        /* --- Services --- */
+        .services {
+            padding: 100px 5%;
+            background: var(--blanco);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: var(--negro-suave);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .section-header h2 span {
+            color: var(--guinda);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--blanco);
+            padding: 50px 40px;
+            border-radius: 30px;
+            border: 1px solid #f0f0f0;
+            transition: var(--transition);
+            text-align: left;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-hard);
+            border-color: var(--guinda);
+        }
+
+        .icon-box {
+            width: 75px;
+            height: 75px;
+            background: var(--fucsia-soft);
+            color: var(--guinda);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            transition: 0.3s;
+        }
+
+        .service-card:hover .icon-box {
+            background: var(--guinda);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--negro-suave);
+            font-weight: 800;
+        }
+
+        /* --- Contact Section --- */
+        .contact {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: var(--gris-claro);
+        }
+
+        .contact-content {
+            padding: 100px 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .info-item .icon {
+            font-size: 1.5rem;
+            color: var(--guinda);
+        }
+
+        .info-item h4 {
+            font-weight: 800;
+            margin-bottom: 5px;
+            color: var(--negro-suave);
+        }
+
+        .map-wrapper {
+            width: 100%;
+            min-height: 500px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: grayscale(0.2);
+        }
+
+        /* --- Floating WhatsApp --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 35px;
+            right: 35px;
+            background: #25d366;
+            color: white;
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            text-decoration: none;
+            animation: pulseWA 2s infinite;
+        }
+
+        @keyframes pulseWA {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #111;
+            color: white;
+            padding: 80px 10% 40px;
+            text-align: center;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 50px;
+            text-align: left;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            color: var(--blanco);
+            font-weight: 800;
+        }
+
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; opacity: 0.6; font-size: 0.9rem; }
+
+        /* --- Responsive --- */
+        @media (max-width: 992px) {
+            .hero { padding-top: 130px; text-align: center; background: white; }
+            .hero-container { flex-direction: column; }
+            .hero h2 { font-size: 2.8rem; }
+            .hero-image img { max-width: 400px; }
+            nav ul { display: none; }
+            .contact { grid-template-columns: 1fr; }
+            .map-wrapper { height: 400px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="mainHeader">
+        <a href="#" class="logo">
+   
+            <div class="logo-text">
+                <h1>SAN GREGORIO</h1>
+                <span>Clínica Barranca</span>
+            </div>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#contacto">Ubicación</a></li>
+                <li><a href="https://wa.me/51948056244" class="btn-nav">Agendar Ahora</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-container">
+            <div class="hero-content" data-reveal>
+                <h2>Tu salud es nuestra <span>Prioridad.</span></h2>
+                <p>Equipamiento médico moderno, tecnología digital de vanguardia y especialistas altamente calificados para brindarte la mejor atención de la región.</p>
+                <a href="#servicios" class="cta-hero">
+                    Ver Especialidades <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Médico Clínica San Gregorio">
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats">
+        <div class="stat-item">
+            <h3 class="counter" data-target="15">0</h3>
+            <p>Especialidades</p>
+        </div>
+        <div class="stat-item">
+            <h3 class="counter" data-target="10000">0</h3>
+            <p>Pacientes Atendidos</p>
+        </div>
+        <div class="stat-item">
+            <h3 class="counter" data-target="24">0</h3>
+            <p>Emergencias 24/7</p>
+        </div>
+        <div class="stat-item">
+            <h3 class="counter" data-target="100">0</h3>
+            <p>% Tecnología Digital</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="servicios">
+        <div class="section-header" data-reveal>
+            <h2>Nuestros <span>Servicios Médicos</span></h2>
+            <p>Atención integral con los estándares más altos de calidad y calidez humana.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card" data-reveal>
+                <div class="icon-box"><i class="fas fa-user-md"></i></div>
+                <h3>Especialidades</h3>
+                <p>Más de 10 especialidades incluyendo Cardiología, Pediatría y Medicina Interna.</p>
+            </div>
+            <div class="service-card" data-reveal>
+                <div class="icon-box"><i class="fas fa-baby"></i></div>
+                <h3>Ecografías</h3>
+                <p>Ecografía 4D, básica y especializada con tecnología de diagnóstico digital.</p>
+            </div>
+            <div class="service-card" data-reveal>
+                <div class="icon-box"><i class="fas fa-x-ray"></i></div>
+                <h3>Rayos X Digital</h3>
+                <p>Radiografía ósea y dental con resultados precisos y entrega inmediata.</p>
+            </div>
+            <div class="service-card" data-reveal>
+                <div class="icon-box"><i class="fas fa-bone"></i></div>
+                <h3>Densitometría</h3>
+                <p>Evaluación avanzada de la salud ósea para prevención y diagnóstico.</p>
+            </div>
+            <div class="service-card" data-reveal>
+                <div class="icon-box"><i class="fas fa-microscope"></i></div>
+                <h3>Laboratorio</h3>
+                <p>Análisis clínicos completos con la mayor rapidez y exactitud de resultados.</p>
+            </div>
+            <div class="service-card" data-reveal>
+                <div class="icon-box"><i class="fas fa-procedures"></i></div>
+                <h3>Cirugías</h3>
+                <p>Sala de operaciones equipada para cirugías menores y programadas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contacto">
+        <div class="contact-content" data-reveal>
+            <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 40px; color: var(--negro-suave);">Ubícanos en Barranca</h2>
+            
+            <div class="info-item">
+                <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div>
+                    <h4>Dirección</h4>
+                    <p>Jr. Castilla N°893 - Barranca</p>
+                    <p style="color: var(--guinda); font-weight: 700; font-size: 0.8rem;">Ref. Al costado del Grifo Primax</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="icon"><i class="fas fa-phone-alt"></i></div>
+                <div>
+                    <h4>Teléfonos</h4>
+                    <p>Central: 01 598 4091</p>
+                    <p>WhatsApp: 948 056 244</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="icon"><i class="fas fa-clock"></i></div>
+                <div>
+                    <h4>Horarios</h4>
+                    <p>Lun - Sáb: 8:00 AM - 8:00 PM</p>
+                    <p style="color: var(--guinda); font-weight: 700;">Emergencias las 24 Horas</p>
+                </div>
+            </div>
+        </div>
+        <div class="map-wrapper">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3908.777478082003!2d-77.7592864!3d-10.751683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9106f364e56598c1%3A0x6b42b9195b09f485!2sJr.%20Castilla%20893%2C%20Barranca%2015169!5e0!3m2!1ses-419!2spe!4v1700000000000!5m2!1ses-419!2spe" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 style="color: var(--guinda-hover); font-size: 1.4rem;">SAN GREGORIO</h4>
+                <p style="opacity: 0.5; margin-bottom: 20px;">Liderando el cuidado de la salud en la región, con ética y compromiso humano.</p>
+                <div style="display: flex; gap: 15px;">
+                    <a href="https://www.facebook.com/clinicasangregoriobarranca" target="_blank" style="color: white; font-size: 1.5rem;"><i class="fab fa-facebook-square"></i></a>
+                    <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Menú</h4>
+                <ul>
+                    <li>Inicio</li>
+                    <li>Servicios</li>
+                    <li>Nosotros</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li>Términos y Condiciones</li>
+                    <li>Política de Privacidad</li>
+                    <li>Libro Reclamaciones</li>
+                </ul>
+            </div>
+        </div>
+        <div style="opacity: 0.4; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px;">
+            © 2025 Clínica San Gregorio. Todos los derechos reservados. Barranca, Perú.
+        </div>
+        <div style="opacity: 0.4; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px;">
+            Creado por CodeDrak.
+        </div>
+    </footer>
+
+    <!-- Botón WhatsApp -->
+    <a href="https://wa.me/51948056244?text=Hola%20Cl%C3%ADnica%20San%20Gregorio%2C%20quisiera%20agendar%20una%20cita%20m%C3%A9dica." class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // --- Sticky Header Logic ---
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            header.classList.toggle('sticky', window.scrollY > 0);
+        });
+
+        // --- Scroll Reveal Animation ---
+        const observerOptions = { threshold: 0.2 };
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+
+        // --- Animated Counters ---
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = +counter.getAttribute('data-target');
+                    let current = 0;
+                    const step = target / 100;
+                    
+                    const updateCount = () => {
+                        current += step;
+                        if (current < target) {
+                            counter.innerText = Math.ceil(current);
+                            setTimeout(updateCount, 15);
+                        } else {
+                            counter.innerText = target + (target > 50 ? "+" : "");
+                        }
+                    };
+                    updateCount();
+                    counterObserver.unobserve(counter);
+                }
+            });
+        }, { threshold: 1 });
+
+        document.querySelectorAll('.counter').forEach(c => counterObserver.observe(c));
+
+        // --- Smooth Scroll Adjust ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === "#") return;
+                
+                e.preventDefault();
+                const target = document.querySelector(targetId);
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
